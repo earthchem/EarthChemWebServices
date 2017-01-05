@@ -5,7 +5,13 @@ import java.util.List;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
-
+/**
+* Java bean used in Jersey
+*
+* @author  Bai
+* @version 1.0
+* @since   2017-01-04 
+*/
 @XmlRootElement(name = "method")
 public class Method implements Serializable {
 	

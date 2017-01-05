@@ -2,13 +2,16 @@ package com.earthchem.model;
 
 import java.io.Serializable;
 import java.util.List;
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.Marshaller;
-import javax.xml.bind.annotation.XmlAnyElement;
-import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
+
+/**
+* Java bean used in Jersey
+*
+* @author  Bai
+* @version 1.0
+* @since   2017-01-04 
+*/
 @XmlType
 public class Standards implements Serializable {
 	

@@ -1,17 +1,18 @@
 package com.earthchem.model;
 
 import java.io.Serializable;
-
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlType;
 
+/**
+* Java bean used in Jersey
+*
+* @author  Bai
+* @version 1.0
+* @since   2017-01-04 
+*/
 @XmlRootElement(name = "item")
-//@XmlAccessorType(XmlAccessType.FIELD)
-//@XmlType(name = "item", factoryClass = Item.class)
 public class Item implements Serializable {
 	
 	private String group="chemical";
