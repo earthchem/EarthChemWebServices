@@ -1,4 +1,4 @@
-# ecsearch2
+# EarthChemWebServices
 Java program to replace existing PetDB Search and Sample Web Services
 
 The existing PetDB Search application is located at http://www.earthchem.org/petdb/search.
