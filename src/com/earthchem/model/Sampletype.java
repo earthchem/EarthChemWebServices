@@ -18,7 +18,7 @@ import javax.xml.bind.annotation.XmlType;
 */
 @XmlRootElement(name = "Sampletype")
 //@XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(propOrder = {"phase","material"})
+@XmlType(propOrder = {"phase","materials"})
 public class Sampletype implements Serializable {
 
 	private Phase phase;
@@ -37,7 +37,7 @@ public class Sampletype implements Serializable {
 	public Phase getPhase() {
 		return phase;
 	}
-	@XmlElement
+	@XmlElement(name="Phase")
 	public void setPhase(Phase phase) {
 		this.phase = phase;
 	}
