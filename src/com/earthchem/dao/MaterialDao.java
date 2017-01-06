@@ -2,22 +2,49 @@ package com.earthchem.dao;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import com.earthchem.model.Item;
-import com.earthchem.model.Items;
 import com.earthchem.model.Material;
 import com.earthchem.model.Method;
 import com.earthchem.model.Standard;
 import com.earthchem.model.Standards;
 import com.earthchem.util.DataUtil;
-
+/**
+* Retrieve data from database for Material tag and its child tag in XML file.
+*
+* @author  Bai
+* @version 1.0
+* @since   2017-01-04 
+*/
 public class MaterialDao {
 	
 	
 	public Material getMaterial(int sampleNum, String citationNum) {
-	//	List<Method> methodList = getMethod(26197, "1282");
+		String query ="select distinct  m.material_num, m.material_name materialdescription, tc.taxonomic_classifier_name mineralname "+
+		" from sampling_feature s "+
+		" join specimen sp on s.sampling_feature_num = sp.sampling_feature_num "+
+		" join material m on sp.material_num = m.material_num "+
+		" left join sampling_feature_taxonomic_classifier stc on sp.sampling_feature_num = stc.sampling_feature_num "+
+		" left join taxonomic_classifier tc on stc.taxonomic_classifier_num = tc.taxonomic_classifier_num and tc.taxonomic_classifier_type_cv = 'Mineral' "+
+		" where s.sampling_feature_num = "+sampleNum;
+		String desc = null;
+		String mineralName = null;
+		String type =null;
+		List<Object[]> list = DataUtil.getRecords(query);
+		for(Object[] arr: list) {
+			int materialNum = (Integer) arr[0];
+			desc = (String)arr[1];
+			if(arr[2]!= null)
+			mineralName = (String)arr[2];
+			if(materialNum==3){type="glass";}
+			else if(materialNum==4){type="groundmass";}
+			else if(materialNum==5){type="inclusion";}
+			else if(materialNum==6){type="mineral";}	
+			else type ="unspecified";
+			break;		
+		}
 		List<Method> methodList = getMethod(sampleNum, citationNum);
-		Material material = new Material("materialdes", "materialtype", "Slname", methodList); 		
+		
+		Material material = new Material(desc, type, mineralName, methodList); 		
 		return material;
 	}
 	
@@ -30,7 +57,6 @@ public class MaterialDao {
 		" and s.sampling_feature_num = fa.sampling_feature_num and fa.action_num = a.action_num "+
 		" and s.sampling_feature_num = "+sampleNum+" and cd.citation_num = "+citationNum+
 		" order by method_num, o.organization_num";
-
 		List<Method> methodList = new ArrayList<Method>();
 		List<Object[]> list = DataUtil.getRecords(query);
 		for(Object[] arr: list) {
@@ -47,14 +73,14 @@ public class MaterialDao {
 	public List<Item> getItems(int sampleNum, String citationNum, String methodNum, String orgNum) {
 		String query = "select distinct v.variable_code, vt.variable_type_code, u.unit_name, n.value_meas, r.result_num "+
 		" from sampling_feature s, feature_action fa, action ac, method m,  result r, numeric_data n, unit u, variable v, "+
-		" variable_type vt, dataset_result dr, citation_dataset cd, related_result rr "+
+		" variable_type vt, dataset_result dr, citation_dataset cd "+
 		" where fa.sampling_feature_num = s.sampling_feature_num and fa.action_num = ac.action_num and m.method_num = ac.method_num "+    
 		" and r.feature_action_num = fa.feature_action_num and r.result_num = n.result_num and u.unit_num = n.unit_num "+
 		" and v.variable_num = r.variable_num and v.variable_type_num = vt.variable_type_num and dr.result_num = r.result_num "+
-		" and cd.dataset_num = dr.dataset_num and rr.result_num = r.result_num "+
+		" and cd.dataset_num = dr.dataset_num "+
 		" and s.sampling_feature_num = "+sampleNum+" and m.method_num ="+methodNum+
 		" and cd.citation_num = "+citationNum+" and ac.organization_num = "+orgNum;
-	
+		
 		List<Item> itemList = new ArrayList<Item>();
 		List<Object[]> list = DataUtil.getRecords(query);
 		for(Object[] arr: list) {

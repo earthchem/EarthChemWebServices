@@ -5,8 +5,15 @@ import java.util.List;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
-
-@XmlRootElement(name = "Material")
+import javax.xml.bind.annotation.XmlType;
+/**
+* Java bean used in Jersey
+*
+* @author  Bai
+* @version 1.0
+* @since   2017-01-04 
+*/
+//@XmlRootElement(name = "Material")
 public class Material {
 	private String materialdescription;
 	private String materialtype; 
@@ -53,6 +60,12 @@ public class Material {
 	@XmlElement (name="method")
 	public void setMethods(List<Method> methods) {
 		this.methods = methods;
+	}
+
+	@Override
+	public String toString() {
+		return "Material [materialdescription=" + materialdescription + ", materialtype=" + materialtype
+				+ ", mineralname=" + mineralname + ", methods=" + methods + "]";
 	}
 	
 	

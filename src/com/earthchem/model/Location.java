@@ -1,11 +1,16 @@
 package com.earthchem.model;
 
 import java.io.Serializable;
-
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
-
+/**
+* Java bean used in Jersey
+*
+* @author  Bai
+* @version 1.0
+* @since   2017-01-04 
+*/
 @XmlRootElement(name = "Location")
 @XmlType(propOrder = {"pointType","lineStringType","precision"})
 public class Location implements Serializable {
