@@ -17,14 +17,14 @@ public class CitationDao {
 	
 	public Citation getCitation(int sampleNum, String citationNum) {
 		String query ="select distinct c.journal, c.publication_year, c.first_page, c.last_page,"+
-		" i.citation_external_identifier, c.title,  p.last_name||', '||p.first_name author "+
+		" i.citation_external_identifier, c.title,  p.last_name||', '||p.first_name author, al.author_order "+
 		" from citation c "+
 		" join citation_dataset cd on  c.citation_num = cd.citation_num "+
 		" join dataset d on cd.dataset_num = d.dataset_num "+
 		" join author_list al on c.citation_num = al.citation_num "+
 		" join person p on p.person_num = al.person_num "+
 		" left join citation_external_identifier i on i.citation_num = c.citation_num "+
-		" where c.citation_num = "+citationNum;
+		" where c.citation_num = "+citationNum+" order by al.author_order";
 		List<String> authorList = new ArrayList<String>();
 		List<Object[]> list = DataUtil.getRecords(query);
 		Citation citation = new Citation();
