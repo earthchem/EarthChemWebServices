@@ -39,13 +39,11 @@ public class CitationDao {
 				if(arr[2] != null && arr[3] != null) pages = ""+arr[2]+"-"+arr[3];
 				citation.setPages(pages);
 			}
-	//		authorList.add("A"+", "+i);
 			authorList.add((String)arr[6]);
-			System.out.println((String)arr[6]);
 			i++;
 		}
 		citation.setAuthors(authorList);
-	//	citation.setSampletype(new SampletypeDao().getSampletype(sampleNum, citationNum));
+		citation.setSampletype(new SampletypeDao().getSampletype(sampleNum, citationNum));
 		return citation;		
 	}
 	

@@ -21,7 +21,7 @@ import javax.xml.bind.annotation.XmlType;
 @XmlRootElement(name = "Citation")
 //@XmlType(propOrder = {"Title","Author","Sampletype"})
 //@XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(propOrder = {"title","authors"})
+@XmlType(propOrder = {"title","authors","sampletype"})
 public class Citation implements Serializable {
 	private String journal;
 	private String year;
@@ -29,6 +29,7 @@ public class Citation implements Serializable {
 	private String doi;
 	private String title;
 	private List<String> authors;
+	private Sampletype sampletype;
 	
 	public String getJournal() {
 		return journal;
@@ -75,7 +76,13 @@ public class Citation implements Serializable {
 		this.authors = authors;
 	}
 	
-	
+	public Sampletype getSampletype() {
+		return sampletype;
+	}
+	@XmlElement
+	public void setSampletype(Sampletype sampletype) {
+		this.sampletype = sampletype;
+	}
 	
 	/*	private List<String> authors;
 	
