@@ -9,58 +9,30 @@ import javax.xml.bind.annotation.XmlType;
 *
 * @author  Bai
 * @version 1.0
-* @since   2017-01-04 
+* @since   2017-01-09 
 */
 @XmlRootElement(name = "Location")
-@XmlType(propOrder = {"pointType","lineStringType","precision"})
 public class Location implements Serializable {
 
-	private PointType pointType;
-	private LineStringType lineStringType;
-	private String precision;
+	private Point point;
+	
+	public Location() {
+	}
 
-	public Location() {}
-	
-	
-	
-	public Location(PointType pointType, LineStringType lineStringType, String precision) {
+	public Location(Point point) {
 		super();
-		this.pointType = pointType;
-		this.lineStringType = lineStringType;
-		this.precision = precision;
+		this.point = point;
 	}
 
-
-
-	public PointType getPointType() {
-		return pointType;
+	public Point getPoint() {
+		return point;
 	}
-	
 	@XmlElement (name="Point")
-	public void setPointType(PointType pointType) {
-		this.pointType = pointType;
+	public void setPoint(Point point) {
+		this.point = point;
 	}
 	
 	
-	public LineStringType getLineStringType() {
-		return lineStringType;
-	}
 
-	@XmlElement (name="LineString")
-	public void setLineStringType(LineStringType lineStringType) {
-		this.lineStringType = lineStringType;
-	}
-
-	public String getPrecision() {
-		return precision;
-	}
 	
-	@XmlElement (name="Location_Precision")
-	public void setPrecision(String precision) {
-		this.precision = precision;
-	}
-
-
-
-
 }
