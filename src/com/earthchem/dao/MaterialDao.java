@@ -6,7 +6,6 @@ import com.earthchem.model.Item;
 import com.earthchem.model.Material;
 import com.earthchem.model.Method;
 import com.earthchem.model.Standard;
-import com.earthchem.model.Standards;
 import com.earthchem.util.DataUtil;
 /**
 * Retrieve data from database for Material tag and its child tag in XML file.
@@ -84,13 +83,12 @@ public class MaterialDao {
 		List<Item> itemList = new ArrayList<Item>();
 		List<Object[]> list = DataUtil.getRecords(query);
 		for(Object[] arr: list) {
-			Standards standards = getStandards(""+ arr[4]);
-			itemList.add(new Item((String)arr[0],(String)arr[1], (String)arr[2],""+arr[3],standards));		
+			itemList.add(new Item((String)arr[0],(String)arr[1], (String)arr[2],""+arr[3],getStandards(""+ arr[4])));		
 		}
 		return itemList;
 	}
 	
-	public Standards getStandards(String resultNum) {
+	public List<Standard> getStandards(String resultNum) {
 		String query ="select sd.sampling_feature_code  standard_name, nd.value_meas standard_value "+
 		" from related_result rr,  relationship_type rt,  result rd, numeric_data nd, feature_action fd, sampling_feature sd "+
 		" where rr.relationship_type_num = rr.relationship_type_num and rt.relationship_type_name = 'IsStandardizedBy' "+ 
@@ -103,6 +101,6 @@ public class MaterialDao {
 		for(Object[] arr: list) {
 			standardList.add(new Standard((String)arr[0],""+arr[1]));
 		}
-		return  new Standards(standardList);
+		return  standardList;
 	}
 }

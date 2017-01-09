@@ -1,8 +1,11 @@
 package com.earthchem.model;
 
 import java.io.Serializable;
+import java.util.List;
+
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlElementWrapper;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -21,18 +24,14 @@ public class Item implements Serializable {
 	private String type;
 	private String units;
 	private String value;
-	private Standards standards;
-	
+	private List<Standard> standards;
 
-	public Item(String name, String type, String units, String value) {
-		super();
-		this.name = name;
-		this.type = type;
-		this.units = units;
-		this.value = value;
+	public Item() {
+		// TODO Auto-generated constructor stub
 	}
-	
-	public Item(String name, String type, String units, String value, Standards standards) {
+
+	public Item(String name, String type, String units, String value,
+			List<Standard> standards) {
 		super();
 		this.name = name;
 		this.type = type;
@@ -40,11 +39,7 @@ public class Item implements Serializable {
 		this.value = value;
 		this.standards = standards;
 	}
-	
-	
-	public Item() {
-		// TODO Auto-generated constructor stub
-	}
+
 
 	public String getGroup() {
 		return group;
@@ -88,13 +83,15 @@ public class Item implements Serializable {
 	public void setValue(String value) {
 		this.value = value;
 	}
-
- 	public Standards getStandards() {
+	
+	
+	public List<Standard> getStandards() {
 		return standards;
 	}
- 	
-	@XmlElement (name="standards", type=Standards.class)
-	public void setStandards(Standards standards) {
+
+	@XmlElementWrapper(name="standards")
+	@XmlElement(name="standard")
+	public void setStandards(List<Standard> standards) {
 		this.standards = standards;
 	}
 
