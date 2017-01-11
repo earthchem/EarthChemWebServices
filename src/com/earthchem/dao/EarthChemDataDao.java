@@ -25,7 +25,8 @@ public class EarthChemDataDao {
 		" inner join dataset ds  on ac.dataset_num = ds.dataset_num "+
 		" inner join citation_dataset cd on cd.dataset_num =ds.dataset_num "+
 		" inner join citation ci on ci.citation_num = cd.citation_num "+
-		" where s.sampling_feature_num = "+sampleNum;
+		" where s.sampling_feature_code in ( select sampling_feature_code from sampling_feature "+
+		" where sampling_feature_type_num <> 3 and sampling_feature_num = "+sampleNum+")";
 		
 		List<Citation> citationList = new ArrayList<Citation>();
 		List<Object[]> list = DataUtil.getRecords(query);
