@@ -25,14 +25,6 @@ public class EarthChemModel implements Serializable {
 	private EarthChemSample earthChemSample;
 	
 	public EarthChemModel() {
-	/*	try{
-	          JAXBContext jc = JAXBContext.newInstance(EarthChemModel.class);     
-	          Marshaller marshaller = jc.createMarshaller();
-	          marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-	          marshaller.setProperty(Marshaller.JAXB_SCHEMA_LOCATION, "http://www.earthchemportal.org http://www.earthchemportal.org/schema/earthchem_v26.xsd");
-	          marshaller.marshal(this, System.out);
-	      } catch (Exception ex){}  	
-	      */
 	}
 
 	public String getFirstResultPosition() {
