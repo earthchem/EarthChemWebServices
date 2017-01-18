@@ -9,7 +9,9 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import com.earthchem.dao.EarthChemModelDao;
+import com.earthchem.dao.MinMaxSampleNumDao;
 import com.earthchem.model.EarthChemModel;
+import com.earthchem.model.MinMaxSampleNum;
 
 
 /**
@@ -31,7 +33,15 @@ public class SampleService {
 		return "Hello Jersey!";
 	}
 	
-
+	@GET
+	@Path("/minMaxSamples")
+	@Produces(MediaType.APPLICATION_XML)
+	public MinMaxSampleNum getMinMaxSampleNum() {
+		MinMaxSampleNum minMax = new MinMaxSampleNumDao().getMinMaxSampleNum();
+		if(minMax == null)
+			  throw new SampleNotFoundException("<Error>Min and max sample numbers are not found in EarthChemDB.</Error>");
+		return minMax;
+	}
 
 	@GET
 	@Path("/samples/{sampleNum}")
