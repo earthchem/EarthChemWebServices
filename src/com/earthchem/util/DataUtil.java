@@ -23,6 +23,7 @@ public class DataUtil {
 
     static {
         try {
+        	//update at C:\apache-tomcat-8.0.39\conf\context.xml
             dataSource = (DataSource) new InitialContext().lookup( "java:/comp/env/jdbc/postgres" );
         }
         catch (NamingException e) { 

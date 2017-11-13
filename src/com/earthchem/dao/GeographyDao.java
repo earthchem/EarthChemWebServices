@@ -6,10 +6,7 @@ import java.util.List;
 import com.earthchem.model.Coord;
 import com.earthchem.model.Geography;
 import com.earthchem.model.Location;
-import com.earthchem.model.LocationPrecision;
-import com.earthchem.model.Phase;
 import com.earthchem.model.Point;
-import com.earthchem.model.Rock;
 import com.earthchem.util.DataUtil;
 /**
 * Retrieve data from database for Geography tag and its child tags in XML file.
@@ -33,7 +30,7 @@ public class GeographyDao {
 			Location location = new Location(new Point(coord));
 			geography.setLocation(location);
 			if(g.length==3) {
-				geography.setPrecision(new LocationPrecision(g[2]));
+				geography.setPrecision(g[2]);
 			}
 			break;
 		}

@@ -7,7 +7,6 @@ import com.earthchem.model.Coord;
 import com.earthchem.model.EarthChemSample;
 import com.earthchem.model.Geography;
 import com.earthchem.model.Location;
-import com.earthchem.model.LocationPrecision;
 import com.earthchem.model.Phase;
 import com.earthchem.model.Point;
 import com.earthchem.model.Rock;
@@ -36,7 +35,7 @@ public class EarthChemSampleDao {
 		" join feature_action fa on fa.sampling_feature_num = rf.related_sampling_feature_num "+
 		" join action a on a.action_num = fa.action_num "+
 	//	" join action_type at on at.action_type_num = a.action_type_num and at.action_type_name in ('Cruise','Expedition')where fic.feature_of_interest_cv_num <> 1 and s2.sampling_feature_num = "+sampleNum;
-		" join action_type at on at.action_type_num = a.action_type_num and at.action_type_name in ('Cruise','Expedition')where fic.feature_of_interest_cv_num <> 1 and s.sampling_feature_num = "+sampleNum;
+		" left join action_type at on at.action_type_num = a.action_type_num and at.action_type_name in ('Cruise','Expedition')where fic.feature_of_interest_cv_num <> 1 and s.sampling_feature_num = "+sampleNum;
 		List<Object[]> list = DataUtil.getRecords(query);
 		for(Object[] arr: list) {
 			ecs.setSampleNumber(""+sampleNum);

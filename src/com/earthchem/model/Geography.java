@@ -16,15 +16,23 @@ import javax.xml.bind.annotation.XmlType;
 public class Geography implements Serializable {
 
 	private Location location;
-	private LocationPrecision precision;
+//	private LocationPrecision precision;
+	private String precision;
 	
 	public Geography() {}
 	
-	public Geography(Location location, LocationPrecision precision) {
+/*	public Geography(Location location, LocationPrecision precision) {
 		super();
 		this.location = location;
 		this.precision = precision;
 	}
+*/
+	public Geography(Location location, String precision) {
+		super();
+		this.location = location;
+		this.precision = precision;
+	}
+	
 	public Location getLocation() {
 		return location;
 	}
@@ -32,13 +40,20 @@ public class Geography implements Serializable {
 	public void setLocation(Location location) {
 		this.location = location;
 	}
-	public LocationPrecision getPrecision() {
+/*	public LocationPrecision getPrecision() {
 		return precision;
 	}
 	@XmlElement(name = "Location_Precision")
 	public void setPrecision(LocationPrecision precision) {
 		this.precision = precision;
 	}
-	
+*/	
+	public String getPrecision() {
+		return precision;
+	}
+	@XmlElement(name = "Location_Precision")
+	public void setPrecision(String precision) {
+		this.precision = precision;
+	}
 	
 }

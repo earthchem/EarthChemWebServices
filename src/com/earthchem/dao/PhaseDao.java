@@ -15,7 +15,7 @@ import com.earthchem.util.DataUtil;
 public class PhaseDao {
 	
 	public Phase getPhase(int sampleNum, String citationNum) {
-		Phase phase = new Phase(getRock(26197, ""+42));
+		Phase phase = new Phase(getRock(sampleNum, ""+citationNum));
 		return phase;
 		
 	}
