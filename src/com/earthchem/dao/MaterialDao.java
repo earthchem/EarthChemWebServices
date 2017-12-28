@@ -34,10 +34,13 @@ public class MaterialDao {
 			desc = (String)arr[1];
 			if(arr[2]!= null)
 			mineralName = (String)arr[2];
-			if(materialNum==3){type="glass";}
+			if(materialNum==1){type="concentrate of heavy minerals";}
+			else if(materialNum==3){type="glass";}
 			else if(materialNum==4){type="groundmass";}
 			else if(materialNum==5){type="inclusion";}
 			else if(materialNum==6){type="mineral";}	
+			else if(materialNum==7){type="rock";}	
+			else if(materialNum==9){type="leachate";}	
 			else type ="unspecified";
 			break;		
 		}
